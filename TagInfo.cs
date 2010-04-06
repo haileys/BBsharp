@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BBSharp
+namespace BBsharp
 {
-    public class TagInfo
+    class TagInfo
     {
-        public string bbtag { get; set; }
-        public string etag { get; set; }
+        public string bbtag { get; private set; }
+        public string etag { get; private set; }
 
         public TagInfo(string bbtag, string etag)
         {
