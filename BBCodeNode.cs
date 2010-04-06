@@ -5,7 +5,7 @@ using System.Text;
 
 namespace bbsharp
 {
-    class BBCodeNode
+    public class BBCodeNode
     {
         public BBCodeNode[] Children { get { return children.ToArray(); } }
         List<BBCodeNode> children;
@@ -30,6 +30,7 @@ namespace bbsharp
             this.TagName = TagName;
             this.Attribute = Attribute;
             this.InnerText = InnerText;
+            children = new List<BBCodeNode>();
         }
         public BBCodeNode(string TagName, string Attribute, bool IsSingular)
         {
@@ -43,11 +44,16 @@ namespace bbsharp
             this.TagName = TagName;
             this.Attribute = Attribute;
             this.Singular = IsSingular;
+            children = new List<BBCodeNode>();
         }
         public BBCodeNode(string TagName, string Attribute) : this(TagName, Attribute, "") { }
         public BBCodeNode(string TagName) : this(TagName, null) { }
+        protected BBCodeNode()
+        {
+            children = new List<BBCodeNode>();
+        }
 
-        public BBCodeNode AppendChild(BBCodeNode Node)
+        public virtual BBCodeNode AppendChild(BBCodeNode Node)
         {
             if (Singular)
                 throw new InvalidOperationException("Cannot add children to a singular node");
@@ -63,7 +69,7 @@ namespace bbsharp
 
             return Node;
         }
-        public BBCodeNode AppendChild(string TagName, string Attribute, string InnerText)
+        public virtual BBCodeNode AppendChild(string TagName, string Attribute, string InnerText)
         {
             var node = new BBCodeNode(TagName, Attribute)
             {
@@ -73,11 +79,11 @@ namespace bbsharp
 
             return AppendChild(node);
         }
-        public BBCodeNode AppendChild(string TagName, string Attribute)
+        public virtual BBCodeNode AppendChild(string TagName, string Attribute)
         {
             return AppendChild(TagName, Attribute);
         }
-        public BBCodeNode AppendChild(string TagName)
+        public virtual BBCodeNode AppendChild(string TagName)
         {
             return AppendChild(TagName, "");
         }
@@ -90,7 +96,7 @@ namespace bbsharp
             return node;
         }
 
-        public BBCodeNode InsertAfter(BBCodeNode Node, BBCodeNode After)
+        public virtual BBCodeNode InsertAfter(BBCodeNode Node, BBCodeNode After)
         {
             if (Singular)
                 throw new InvalidOperationException("Cannot add children to a singular node");
@@ -112,7 +118,7 @@ namespace bbsharp
             return Node;
         }
 
-        public BBCodeNode InsertBefore(BBCodeNode Node, BBCodeNode Before)
+        public virtual BBCodeNode InsertBefore(BBCodeNode Node, BBCodeNode Before)
         {
             if (Singular)
                 throw new InvalidOperationException("Cannot add children to a singular node");
@@ -134,7 +140,7 @@ namespace bbsharp
             return Node;
         }
 
-        public BBCodeNode PrependChild(BBCodeNode Node)
+        public virtual BBCodeNode PrependChild(BBCodeNode Node)
         {
             if (Singular)
                 throw new InvalidOperationException("Cannot add children to a singular node");
@@ -150,12 +156,12 @@ namespace bbsharp
             return Node;
         }
 
-        public void RemoveAll()
+        public virtual void RemoveAll()
         {
             children.Clear();
         }
 
-        public BBCodeNode RemoveChild(BBCodeNode Node)
+        public virtual BBCodeNode RemoveChild(BBCodeNode Node)
         {
             if (Node == null)
                 throw new ArgumentNullException("Node may not be null");
@@ -168,7 +174,7 @@ namespace bbsharp
             return Node;
         }
 
-        public BBCodeNode ReplaceChild(BBCodeNode Old, BBCodeNode New)
+        public virtual BBCodeNode ReplaceChild(BBCodeNode Old, BBCodeNode New)
         {
             if (Old == null || New == null)
                 throw new ArgumentNullException("Arguments may not be null");
