@@ -7,16 +7,37 @@ namespace bbsharp
 {
     public class BBCodeNode
     {
+        /// <summary>
+        /// Gets an array of this node's child nodes
+        /// </summary>
         public BBCodeNode[] Children { get { return children.ToArray(); } }
         List<BBCodeNode> children;
 
-        public BBCodeNode Parent { get; private set; }
+        /// <summary>
+        /// Gets the parent node of this node.
+        /// </summary>
+        public BBCodeNode Parent { get; protected set; }
 
-        public bool Singular { get; private set; }
+        /// <summary>
+        /// Gets whether this node is singular. Singular nodes are self closing and can have no children.
+        /// </summary>
+        public bool Singular { get; protected set; }
 
-        public string TagName { get; private set; }
+        /// <summary>
+        /// Gets the tag name of this node. The tag name is the main part of the tag, and is mandatory.
+        /// </summary>
+        public string TagName { get; protected set; }
+        /// <summary>
+        /// Gets or sets this node's attribute. The Attribute is the part of the tag that comes after the equals sign. It is optional, and this property may return either null or an empty string.
+        /// </summary>
         public string Attribute { get; set; }
 
+        /// <summary>
+        /// Creates a new BBCodeNode.
+        /// </summary>
+        /// <param name="TagName">The node's tag name. Mandatory.</param>
+        /// <param name="Attribute">The node's optional attribute. This may be an empty string or null.</param>
+        /// <param name="IsSingular">Singular nodes are self closing and may not have children</param>
         public BBCodeNode(string TagName, string Attribute, bool IsSingular)
         {
             if (TagName == null)
@@ -31,6 +52,11 @@ namespace bbsharp
             this.Singular = IsSingular;
             children = new List<BBCodeNode>();
         }
+        /// <summary>
+        /// Creates a new BBCodeNode.
+        /// </summary>
+        /// <param name="TagName">The node's tag name. Mandatory.</param>
+        /// <param name="Attribute">The node's optional attribute. This may be an empty string or null.</param>
         public BBCodeNode(string TagName, string Attribute)
         {
             if (TagName == null)
@@ -44,12 +70,21 @@ namespace bbsharp
             this.Attribute = Attribute;
             children = new List<BBCodeNode>();
         }
+        /// <summary>
+        /// Creates a new BBCodeNode.
+        /// </summary>
+        /// <param name="TagName">The node's tag name. Mandatory.</param>
         public BBCodeNode(string TagName) : this(TagName, null) { }
         protected BBCodeNode()
         {
             children = new List<BBCodeNode>();
         }
 
+        /// <summary>
+        /// Adds a new child node at the end of this node's descendants
+        /// </summary>
+        /// <param name="Node">The existing BBCodeNode to add. This may not already be childed to another node.</param>
+        /// <returns>The node passed</returns>
         public virtual BBCodeNode AppendChild(BBCodeNode Node)
         {
             if (Singular)
@@ -66,6 +101,12 @@ namespace bbsharp
 
             return Node;
         }
+        /// <summary>
+        /// Adds a new child node at the end of this node's descendants
+        /// </summary>
+        /// <param name="TagName">The node's tag name. Mandatory.</param>
+        /// <param name="Attribute">The node's optional attribute. This may be an empty string or null.</param>
+        /// <returns>The newly created child node</returns>
         public virtual BBCodeNode AppendChild(string TagName, string Attribute)
         {
             var node = new BBCodeNode(TagName, Attribute)
@@ -75,11 +116,20 @@ namespace bbsharp
 
             return AppendChild(node);
         }
+        /// <summary>
+        /// Adds a new child node at the end of this node's descendants
+        /// </summary>
+        /// <param name="TagName">The node's tag name. Mandatory.</param>
+        /// <returns>The newly created child node</returns>
         public virtual BBCodeNode AppendChild(string TagName)
         {
             return AppendChild(TagName, "");
         }
 
+        /// <summary>
+        /// Creates a recursive copy of the current nodes and its children
+        /// </summary>
+        /// <returns>A deep clone of the current node</returns>
         public virtual object Clone()
         {
             BBCodeNode node = new BBCodeNode(TagName, Attribute);
@@ -88,6 +138,12 @@ namespace bbsharp
             return node;
         }
 
+        /// <summary>
+        /// Inserts a new child node after the reference node passed.
+        /// </summary>
+        /// <param name="Node">The new child node to add. This may not be already childed to another node</param>
+        /// <param name="After">The reference node. This must be a child of the current node</param>
+        /// <returns>The added node</returns>
         public virtual BBCodeNode InsertAfter(BBCodeNode Node, BBCodeNode After)
         {
             if (Singular)
@@ -110,6 +166,12 @@ namespace bbsharp
             return Node;
         }
 
+        /// <summary>
+        /// Inserts a new child node before the reference node passed.
+        /// </summary>
+        /// <param name="Node">The new child node to add. This may not be already childed to another node</param>
+        /// <param name="After">The reference node. This must be a child of the current node</param>
+        /// <returns>The added node</returns>
         public virtual BBCodeNode InsertBefore(BBCodeNode Node, BBCodeNode Before)
         {
             if (Singular)
@@ -132,6 +194,11 @@ namespace bbsharp
             return Node;
         }
 
+        /// <summary>
+        /// Adds a new child node at the beginning of this node's descendants
+        /// </summary>
+        /// <param name="Node">The existing BBCodeNode to add. This may not already be childed to another node.</param>
+        /// <returns>The node passed</returns>
         public virtual BBCodeNode PrependChild(BBCodeNode Node)
         {
             if (Singular)
@@ -148,11 +215,19 @@ namespace bbsharp
             return Node;
         }
 
+        /// <summary>
+        /// Removes all child nodes
+        /// </summary>
         public virtual void RemoveAll()
         {
             children.Clear();
         }
 
+        /// <summary>
+        /// Removes a specific child node
+        /// </summary>
+        /// <param name="Node">The child node to remove. This must be a child of the current node.</param>
+        /// <returns>The removed node</returns>
         public virtual BBCodeNode RemoveChild(BBCodeNode Node)
         {
             if (Node == null)
@@ -166,6 +241,12 @@ namespace bbsharp
             return Node;
         }
 
+        /// <summary>
+        /// Replaces a specific child node with another
+        /// </summary>
+        /// <param name="Old">The node to remove. This must be a child of this node</param>
+        /// <param name="New">The replacement node. This may not already be childed to another node</param>
+        /// <returns>The removed node</returns>
         public virtual BBCodeNode ReplaceChild(BBCodeNode Old, BBCodeNode New)
         {
             if (Old == null || New == null)
@@ -184,6 +265,10 @@ namespace bbsharp
             return Old;
         }
 
+        /// <summary>
+        /// Recursively generates the BBCode representation of the current node and its children
+        /// </summary>
+        /// <returns>A BBCode string</returns>
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();

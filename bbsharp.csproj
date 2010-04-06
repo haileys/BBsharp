@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="BBCodeDocument.cs" />
     <Compile Include="BBCodeNode.cs" />
+    <Compile Include="BBCodeParseException.cs" />
     <Compile Include="BBCodeParser.cs" />
     <Compile Include="BBCodeTextNode.cs" />
     <Compile Include="Legacy.cs" />

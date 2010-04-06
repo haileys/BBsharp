@@ -7,7 +7,24 @@ namespace bbsharp
 {
     class BBCodeTextNode : BBCodeNode
     {
-        public string InnerText { get; set; }
+        public string InnerText { get { return text.ToString(); } }
+
+        StringBuilder text = new StringBuilder();
+
+        public BBCodeTextNode(string InnerText)
+        {
+            text.Append(InnerText);
+        }
+
+        public void AppendText(string Text)
+        {
+            text.Append(Text);
+        }
+
+        public void AppendText(char Text)
+        {
+            text.Append(Text);
+        }
 
         public override string ToString()
         {
