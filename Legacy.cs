@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace BBsharp
+namespace bbsharp.Legacy
 {
     /// <summary>
     /// Class for converting BBCode formatted text to HTML.
