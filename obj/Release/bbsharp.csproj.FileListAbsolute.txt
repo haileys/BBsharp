@@ -1,0 +1,5 @@
+C:\Users\Charlie\Documents\Visual Studio 2008\Projects\bbsharp\bbsharp\bin\Release\bbsharp.dll
+C:\Users\Charlie\Documents\Visual Studio 2008\Projects\bbsharp\bbsharp\bin\Release\bbsharp.pdb
+C:\Users\Charlie\Documents\Visual Studio 2008\Projects\bbsharp\bbsharp\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Charlie\Documents\Visual Studio 2008\Projects\bbsharp\bbsharp\obj\Release\bbsharp.dll
+C:\Users\Charlie\Documents\Visual Studio 2008\Projects\bbsharp\bbsharp\obj\Release\bbsharp.pdb
