@@ -4,7 +4,7 @@ BBsharp
 BBsharp is a library for converting BBCode to HTML. It is written in C#.
 
 ### FAQ
-* *Hey, what's that funny character at the start of all the files??*
+* **Hey, what's that funny character at the start of all the files?**
 > That's the Byte Order Mark (BOM) which is an artifact of the Unicode encoding used to save BBsharp source files. It doesn't seem to be handled correctly by Git (and many other Linux tools, I hear.) It's not my fault, but I am looking into ways of resolving the issue. Please let me know if it causes any troubles compiling.
 
 ### Help Needed!
