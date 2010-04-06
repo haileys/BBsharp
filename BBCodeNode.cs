@@ -15,23 +15,8 @@ namespace bbsharp
         public bool Singular { get; private set; }
 
         public string TagName { get; private set; }
-        public string Attribute { get; private set; }
-        public string InnerText { get; private set; }
+        public string Attribute { get; set; }
 
-        public BBCodeNode(string TagName, string Attribute, string InnerText)
-        {
-            if (TagName == null)
-                throw new ArgumentNullException("TagName cannot be null");
-
-            TagName = TagName.Trim();
-            if (TagName == "")
-                throw new ArgumentException("TagName cannot be empty");
-
-            this.TagName = TagName;
-            this.Attribute = Attribute;
-            this.InnerText = InnerText;
-            children = new List<BBCodeNode>();
-        }
         public BBCodeNode(string TagName, string Attribute, bool IsSingular)
         {
             if (TagName == null)
@@ -46,7 +31,19 @@ namespace bbsharp
             this.Singular = IsSingular;
             children = new List<BBCodeNode>();
         }
-        public BBCodeNode(string TagName, string Attribute) : this(TagName, Attribute, "") { }
+        public BBCodeNode(string TagName, string Attribute)
+        {
+            if (TagName == null)
+                throw new ArgumentNullException("TagName cannot be null");
+
+            TagName = TagName.Trim();
+            if (TagName == "")
+                throw new ArgumentException("TagName cannot be empty");
+
+            this.TagName = TagName;
+            this.Attribute = Attribute;
+            children = new List<BBCodeNode>();
+        }
         public BBCodeNode(string TagName) : this(TagName, null) { }
         protected BBCodeNode()
         {
@@ -69,19 +66,14 @@ namespace bbsharp
 
             return Node;
         }
-        public virtual BBCodeNode AppendChild(string TagName, string Attribute, string InnerText)
+        public virtual BBCodeNode AppendChild(string TagName, string Attribute)
         {
             var node = new BBCodeNode(TagName, Attribute)
             {
                 Parent = this,
-                InnerText = InnerText,
             };
 
             return AppendChild(node);
-        }
-        public virtual BBCodeNode AppendChild(string TagName, string Attribute)
-        {
-            return AppendChild(TagName, Attribute);
         }
         public virtual BBCodeNode AppendChild(string TagName)
         {

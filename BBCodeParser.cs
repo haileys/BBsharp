@@ -9,7 +9,19 @@ namespace bbsharp
     {
         public static BBCodeDocument Load(string BBCode)
         {
-            throw new NotImplementedException();
+            BBCodeDocument document = new BBCodeDocument();
+            Stack<BBCodeNode> nodestack = new Stack<BBCodeNode>();
+            nodestack.Push(document);
+
+            for (int i = 0; i < BBCode.Length; i++)
+            {
+                if (BBCode[i] != '[')
+                {
+                    if((nodestack.Peek() as BBCodeTextNode) == null)
+                }
+            }
+
+            return document;
         }
     }
 }

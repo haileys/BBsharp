@@ -45,6 +45,7 @@
     <Compile Include="BBCodeDocument.cs" />
     <Compile Include="BBCodeNode.cs" />
     <Compile Include="BBCodeParser.cs" />
+    <Compile Include="BBCodeTextNode.cs" />
     <Compile Include="Legacy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagInfo.cs" />
