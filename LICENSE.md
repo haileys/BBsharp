@@ -1,5 +1,7 @@
+
 Original JavaScript version (at http://blogs.stonesteps.ca/showpost.aspx?pid=33)
---------------------------------------------------------------------------------
+=====
+
 >    Copyright (c) 2005-2007, Stone Steps Inc.
 >    All rights reserved.
 >
@@ -28,7 +30,8 @@ Original JavaScript version (at http://blogs.stonesteps.ca/showpost.aspx?pid=33)
 >    THE POSSIBILITY OF SUCH DAMAGE.
 
 C# port
--------
+=====
+
 >    Copyright (c) 2009 Charlie Somerville
 >
 >    All redistributions must honour the above BSD license and maintain this notice
