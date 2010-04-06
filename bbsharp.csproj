@@ -36,10 +36,16 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BBSharp.cs" />
+    <Compile Include="BBCodeDocument.cs" />
+    <Compile Include="BBCodeNode.cs" />
+    <Compile Include="BBCodeTag.cs" />
+    <Compile Include="Legacy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagInfo.cs" />
   </ItemGroup>
