@@ -50,11 +50,20 @@ namespace bbsharp
                 {
                     StringBuilder TagName = new StringBuilder();
                     i++;
+
+                    bool IsClosing = BBCode[i] == '/';
+                    if (IsClosing)
+                        i++;
+
                     // read in the entire tagname
                     while (i < BBCode.Length && char.IsLetter(BBCode[i]))
                         TagName.Append(BBCode[i++]);
+
+                    if (i == BBCode.Length)
+                        break;
+
                     // reached the end of tagname, handle accordingly
-                    if (BBCode[i] == '=' || BBCode[i] == ']')
+                    if (!IsClosing && (BBCode[i] == '=' || BBCode[i] == ']'))
                     {
                         var el = new BBCodeNode(TagName.ToString(), "", SingularTags.Contains(TagName.ToString()));
                         nodestack.Peek().AppendChild(el);
@@ -67,6 +76,18 @@ namespace bbsharp
                             Attribute.Append(BBCode[i++]);
                         el.Attribute = Attribute.ToString();
                     }
+                    else if (IsClosing && BBCode[i] == ']')
+                    {
+                        if (nodestack.Count == 0 || nodestack.Peek().TagName != TagName.ToString())
+                        {
+                            if (ThrowOnError)
+                                throw new BBCodeParseException("Unmatched closing tag", i);
+                            AddPlainText(document, nodestack, "[/" + TagName.ToString() + "]");
+                            continue;
+                        }
+
+                        nodestack.Pop();
+                    }
                     else
                     {
                         // illegal character in tag name
@@ -77,6 +98,8 @@ namespace bbsharp
                     }
                 }
             }
+            if (nodestack.Count > 0 && ThrowOnError)
+                throw new BBCodeParseException("Reached end of document with " + nodestack.Count.ToString() + " unclosed tags.", BBCode.Length);
 
             return document;
         }
