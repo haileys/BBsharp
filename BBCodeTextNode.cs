@@ -13,6 +13,7 @@ namespace bbsharp
 
         public BBCodeTextNode(string InnerText)
         {
+            Singular = true;
             text.Append(InnerText);
         }
 

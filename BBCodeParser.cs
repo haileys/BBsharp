@@ -48,6 +48,10 @@ namespace bbsharp
                 // beginning of a tag
                 else
                 {
+                    // if we have an open text node, close it.
+                    if ((nodestack.Peek() as BBCodeTextNode) != null)
+                        nodestack.Pop();
+
                     StringBuilder TagName = new StringBuilder();
                     i++;
 
@@ -98,6 +102,14 @@ namespace bbsharp
                     }
                 }
             }
+            // close up a final text node if it exists:
+            if ((nodestack.Peek() as BBCodeTextNode) != null)
+                nodestack.Pop();
+
+            // close the body tag if it's the next one
+            if ((nodestack.Peek() as BBCodeDocument) != null)
+                nodestack.Pop();
+
             if (nodestack.Count > 0 && ThrowOnError)
                 throw new BBCodeParseException("Reached end of document with " + nodestack.Count.ToString() + " unclosed tags.", BBCode.Length);
 
