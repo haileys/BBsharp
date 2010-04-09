@@ -75,6 +75,10 @@ namespace bbsharp
                         if (BBCode[i] == ']')
                             continue;
 
+                        // skip over the equals sign so we don't accidentally read it into the attribute
+                        if (BBCode[i] == '=')
+                            i++;
+
                         StringBuilder Attribute = new StringBuilder();
                         while (i < BBCode.Length && BBCode[i] != ']')
                             Attribute.Append(BBCode[i++]);
