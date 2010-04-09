@@ -7,6 +7,9 @@ namespace bbsharp
 {
     public partial class BBCodeDocument : BBCodeNode
     {
+        /// <summary>
+        /// Creates a new Document Node.
+        /// </summary>
         public BBCodeDocument() : base()
         {
             TagName = "body";
