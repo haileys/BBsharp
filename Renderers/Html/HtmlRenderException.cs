@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace bbsharp.Renderers.Html
+{
+    class HtmlRenderException : Exception
+    {
+        public int Position { get; private set; }
+
+        public HtmlRenderException(string Message)
+            : base(Message)
+        { }
+    }
+}

@@ -47,7 +47,7 @@ namespace bbsharp
             if (TagName == "")
                 throw new ArgumentException("TagName cannot be empty");
 
-            this.TagName = TagName;
+            this.TagName = TagName.ToLower();
             this.Attribute = Attribute;
             this.Singular = IsSingular;
             children = new List<BBCodeNode>();
@@ -57,19 +57,7 @@ namespace bbsharp
         /// </summary>
         /// <param name="TagName">The node's tag name. Mandatory.</param>
         /// <param name="Attribute">The node's optional attribute. This may be an empty string or null.</param>
-        public BBCodeNode(string TagName, string Attribute)
-        {
-            if (TagName == null)
-                throw new ArgumentNullException("TagName cannot be null");
-
-            TagName = TagName.Trim();
-            if (TagName == "")
-                throw new ArgumentException("TagName cannot be empty");
-
-            this.TagName = TagName;
-            this.Attribute = Attribute;
-            children = new List<BBCodeNode>();
-        }
+        public BBCodeNode(string TagName, string Attribute) : this(TagName, Attribute, false) { }
         /// <summary>
         /// Creates a new BBCodeNode.
         /// </summary>

@@ -13,6 +13,7 @@ namespace bbsharp
 
         public BBCodeTextNode(string InnerText)
         {
+            TagName = "span";
             Singular = true;
             text.Append(InnerText);
         }
