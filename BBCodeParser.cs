@@ -39,21 +39,21 @@ namespace bbsharp
             Stack<BBCodeNode> nodestack = new Stack<BBCodeNode>();
             nodestack.Push(document);
 
+            // iterate through all characters in text
             for (int i = 0; i < BBCode.Length; i++)
             {
+                // the character is not a tag
                 if (BBCode[i] != '[')
-                {
-                    if ((nodestack.Peek() as BBCodeTextNode) == null)
-                        nodestack.Push(new BBCodeTextNode(BBCode[i].ToString()));
-                    else
-                        ((BBCodeTextNode)nodestack.Peek()).AppendText(BBCode[i]);
-                }
+                    AddPlainText(document, nodestack, BBCode[i].ToString());
+                // beginning of a tag
                 else
                 {
                     StringBuilder TagName = new StringBuilder();
                     i++;
+                    // read in the entire tagname
                     while (i < BBCode.Length && char.IsLetter(BBCode[i]))
                         TagName.Append(BBCode[i++]);
+                    // reached the end of tagname, handle accordingly
                     if (BBCode[i] == '=' || BBCode[i] == ']')
                     {
                         var el = new BBCodeNode(TagName.ToString(), "", SingularTags.Contains(TagName.ToString()));
@@ -72,6 +72,7 @@ namespace bbsharp
                         // illegal character in tag name
                         if (ThrowOnError)
                             throw new BBCodeParseException("Illegal character in tag name", i);
+                        // if ThrowOnError is false, we'll just append this onto 
                         AddPlainText(document, nodestack, TagName.ToString());
                     }
                 }
