@@ -46,6 +46,9 @@ namespace bbsharp.Renderers.Html
                     throw new HtmlRenderException("Image URL scheme must be either HTTP or HTTPS");
                 else
                     return "[img]" + Node.Children.ToHtml() + "[/img]";
+            
+            // @todo
+            throw new NotImplementedException();
         }
     }
 }
