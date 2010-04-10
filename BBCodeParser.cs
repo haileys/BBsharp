@@ -55,6 +55,16 @@ namespace bbsharp
                     StringBuilder TagName = new StringBuilder();
                     i++;
 
+                    // edge case where there is an [ as the last character
+                    if (i == BBCode.Length)
+                    {
+                        if (ThrowOnError)
+                            throw new BBCodeParseException("Reached end of document while reading tag", i);
+                        AddPlainText(document, nodestack, "[" + TagName.ToString());
+                        continue;
+                    }
+
+
                     bool IsClosing = BBCode[i] == '/';
                     if (IsClosing)
                         i++;
@@ -71,7 +81,8 @@ namespace bbsharp
                     {
                         var el = new BBCodeNode(TagName.ToString(), "", SingularTags.Contains(TagName.ToString()));
                         nodestack.Peek().AppendChild(el);
-                        nodestack.Push(el);
+                        if (!el.Singular)
+                            nodestack.Push(el);
                         if (BBCode[i] == ']')
                             continue;
 
@@ -119,7 +130,7 @@ namespace bbsharp
                 nodestack.Pop();
 
             if (nodestack.Count > 0 && ThrowOnError)
-                throw new BBCodeParseException("Reached end of document with " + nodestack.Count.ToString() + " unclosed tags.", BBCode.Length);
+                throw new BBCodeParseException("Reached end of document with " + (nodestack.Count-1).ToString() + " unclosed tags", BBCode.Length);
 
             return document;
         }
