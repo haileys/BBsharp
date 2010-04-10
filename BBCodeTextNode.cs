@@ -5,7 +5,7 @@ using System.Text;
 
 namespace bbsharp
 {
-    class BBCodeTextNode : BBCodeNode
+    public class BBCodeTextNode : BBCodeNode
     {
         public string InnerText { 
             get {

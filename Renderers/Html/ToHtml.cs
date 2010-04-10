@@ -104,7 +104,7 @@ namespace bbsharp.Renderers.Html
         public static string ToHtml(this BBCodeNode Node, bool ThrowOnError, object LookupTable)
         {
             if ((Node as BBCodeTextNode) != null)
-                return HttpUtility.HtmlEncode(Node.ToString());
+                return HttpUtility.HtmlEncode(Node.ToString()).Replace("\n", "<br />");
 
             var d = ((LookupT[])LookupTable).Where(x => ((LookupT)x).Key.ToLower() == Node.TagName.ToLower());
             if (d.Count() > 0)
