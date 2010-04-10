@@ -55,7 +55,7 @@
     <Compile Include="Renderers\Html\HtmlRenderException.cs" />
     <Compile Include="Renderers\Html\Image.cs" />
     <Compile Include="Renderers\Html\ToHtml.cs" />
-    <Compile Include="Renderers\Html\Unrecognised.cs" />
+    <Compile Include="Renderers\Html\Error.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

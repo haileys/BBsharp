@@ -50,24 +50,7 @@ namespace bbsharp.Renderers.Html
                     return RenderImage(Node, ThrowOnError);
 
                 default:
-                    if (Node.Singular)
-                        return "["
-                                + Node.TagName
-                                + Node.Attribute != null &&
-                                    Node.Attribute.Trim() != ""
-                                    ? "=" + HttpUtility.HtmlEncode(Node.Attribute)
-                                    : ""
-                                + "]";
-                    else
-                        return "["
-                                + Node.TagName
-                                + Node.Attribute != null &&
-                                    Node.Attribute.Trim() != ""
-                                    ? "=" + HttpUtility.HtmlEncode(Node.Attribute)
-                                    : "" 
-                                + "]"
-                                + Node.ToHtml(ThrowOnError)
-                                + "[/" + Node.TagName + "]";
+                    return Error(Node);
             }
         }
     }
