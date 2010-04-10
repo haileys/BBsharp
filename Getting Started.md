@@ -53,7 +53,7 @@ Simple, hey? Now all we need to do is register this custom tag with the HTML ren
     var LookupTable = HtmlRenderer.DefaultLookupTable.ToList();
     LookupTable.Add(new KeyValuePair<string,HtmlRendererCallback>("name", RenderName));
     
-    string Html = document.ToHtml(false, LookupTable);
+    string Html = document.Children.ToHtml(false, LookupTable);
     
 And we're done! Obviously, using this advanced method is a little bit more complex than using the extension method in the `bbsharp.Easy` namespace, but it gives us an idea of some of the power afforded to us by the BBsharp Library.
 
