@@ -34,7 +34,7 @@ BBsharp was designed to be modular, and therefore only provides the HTML output 
 
 Now use the `BBCodeDocument.Load()` method to parse a string of BBCode into a BBCode DOM. BBsharp is designed around a base class: `BBCodeNode`. Both the `BBCodeDocument` and `BBCodeTextNode` (a non-tag node) classes inherit from it. `BBCodeNode` was inspired by the `System.Xml.XmlNode` class from the .NET Framework and implements most of the methods that `XmlNode` does.
 
-    BBCodeDocument document = BBCodeDocument.Load("[b]Hello there![/b] I've been converted to HTML with [name]BBsharp[name].");
+    BBCodeDocument document = BBCodeDocument.Load("[b]Hello there![/b] I've been converted to HTML with [name]BBsharp[/name].");
     
 Notice how we've used a custom tag - `[name]` - here. The BBCode parser doesn't care about specifics such as which tags exist and which don't. In fact, the only information we can give the BBCode parser about tags is which tags are singular (self closing)
 
