@@ -98,11 +98,15 @@ namespace bbsharp
                     }
                     else
                     {
+                        // edge case where encountering something like: [[i] would cause the [i] tag not to be read properly
+                        if (BBCode[i] == '[')
+                            i--;
+
                         // illegal character in tag name
                         if (ThrowOnError)
                             throw new BBCodeParseException("Illegal character in tag name", i);
-                        // if ThrowOnError is false, we'll just append this onto 
-                        AddPlainText(document, nodestack, TagName.ToString());
+                        // if ThrowOnError is false, we'll just add it as plain text.
+                        AddPlainText(document, nodestack, "[" + TagName.ToString()); // prepend the [ char which started the tag
                     }
                 }
             }

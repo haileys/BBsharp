@@ -41,6 +41,7 @@ namespace bbsharp.Renderers.Html
             { "del",    DirectConvert },
             { "ins",    DirectConvert },
             { "hr",     DirectConvert },
+            { "body",   DirectConvert },
 
             // BBCode tags which require special handling
             { "img",    RenderImage },

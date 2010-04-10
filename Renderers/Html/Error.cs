@@ -15,16 +15,16 @@ namespace bbsharp.Renderers.Html
             if (Node.Singular)
                 return "["
                         + Node.TagName
-                        + (Node.Attribute ?? "").Trim() != ""
-                            ? "=" + HttpUtility.HtmlEncode(Node.Attribute ?? "")
-                            : ""
+                        + (((Node.Attribute ?? "").Trim() != "")
+                            ? ("=" + HttpUtility.HtmlEncode(Node.Attribute ?? ""))
+                            : (""))
                         + "]";
             else
                 return "["
                         + Node.TagName
-                        + (Node.Attribute ?? "").Trim() != ""
-                            ? "=" + HttpUtility.HtmlEncode(Node.Attribute ?? "")
-                            : ""
+                        + (((Node.Attribute ?? "").Trim() != "")
+                            ? ("=" + (HttpUtility.HtmlEncode(Node.Attribute ?? "")))
+                            : (""))
                         + "]"
                         + Node.Children.ToHtml(false, LookupTable)
                         + "[/" + Node.TagName + "]";
