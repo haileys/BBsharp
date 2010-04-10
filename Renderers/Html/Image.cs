@@ -10,6 +10,9 @@ namespace bbsharp.Renderers.Html
 {
     public static partial class HtmlRenderer
     {
+        /// <summary>
+        /// Internal method for rendering images
+        /// </summary>
         public static string RenderImage(BBCodeNode Node, bool ThrowOnError, object LookupTable)
         {
             if (Node.Children.Length != 1)

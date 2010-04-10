@@ -7,8 +7,6 @@ namespace bbsharp.Renderers.Html
 {
     class HtmlRenderException : Exception
     {
-        public int Position { get; private set; }
-
         public HtmlRenderException(string Message)
             : base(Message)
         { }

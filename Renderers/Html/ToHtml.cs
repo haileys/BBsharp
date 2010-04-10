@@ -8,8 +8,18 @@ using LookupT = System.Collections.Generic.KeyValuePair<string, bbsharp.Renderer
 
 namespace bbsharp.Renderers.Html
 {
+    /// <summary>
+    /// A delegate that allows you to register for your own BBCode tags. This is called when the parser encounters the respective custom tag
+    /// </summary>
+    /// <param name="Node">The node that is the custom tag</param>
+    /// <param name="ThrowOnError">True if an exception should be thrown upon error. If set to false, no exceptions should be thrown and errors should be silently dealt with</param>
+    /// <param name="LookupTable">Internal use only. Must be passed on to any further ToHtml() calls</param>
+    /// <returns>A string containing the HTML code for Node and all children.</returns>
     public delegate string HtmlRendererCallback(BBCodeNode Node, bool ThrowOnError, object LookupTable);
 
+    /// <summary>
+    /// Static class containing HTML rendering methods
+    /// </summary>
     public static partial class HtmlRenderer
     {
         /// <summary>
@@ -20,10 +30,21 @@ namespace bbsharp.Renderers.Html
         {
             return Nodes.ToHtml(false);
         }
+        /// <summary>
+        /// Converts a collection of BBCodeNodes to HTML
+        /// </summary>
+        /// <param name="ThrowOnError">Whether or to throw an exception when an error is encountered. If false, errors will be silently ignored</param>
+        /// <returns>The HTML source as a string</returns>
         public static string ToHtml(this IEnumerable<BBCodeNode> Nodes, bool ThrowOnError)
         {
             return Nodes.ToHtml(ThrowOnError, (object)convertLookup);
         }
+        /// <summary>
+        /// Converts a collection of BBCodeNodes to HTML
+        /// </summary>
+        /// <param name="ThrowOnError">Whether or to throw an exception when an error is encountered. If false, errors will be silently ignored</param>
+        /// <param name="LookupTable">A KeyValuePair&lt;string,HtmlRendererCallback&gt;[] containing valid BBCode tags and their HTML renderers</param>
+        /// <returns>The HTML source as a string</returns>
         public static string ToHtml(this IEnumerable<BBCodeNode> Nodes, bool ThrowOnError, object LookupTable)
         {
             StringBuilder html = new StringBuilder();
@@ -50,16 +71,34 @@ namespace bbsharp.Renderers.Html
             { "a",      RenderLink },
         }.ToArray();
 
+        /// <summary>
+        /// The default lookup table. Contains renderers for [b], [i], [u], [code], [del], [ins], [hr], [body], [img] and [a] tags
+        /// </summary>
         public static LookupT[] DefaultLookupTable { get { return convertLookup; } }
 
+        /// <summary>
+        /// Converts a BBCodeNode to HTML
+        /// </summary>
+        /// <returns>The HTML source as a string</returns>
         public static string ToHtml(this BBCodeNode Node)
         {
             return Node.ToHtml(false);
         }
+        /// <summary>
+        /// Converts a BBCodeNode to HTML
+        /// </summary>
+        /// <param name="ThrowOnError">Whether or to throw an exception when an error is encountered. If false, errors will be silently ignored</param>
+        /// <returns>The HTML source as a string</returns>
         public static string ToHtml(this BBCodeNode Node, bool ThrowOnError)
         {
             return Node.ToHtml(ThrowOnError, (object)convertLookup);
         }
+        /// <summary>
+        /// Converts a BBCodeNode to HTML
+        /// </summary>
+        /// <param name="ThrowOnError">Whether or to throw an exception when an error is encountered. If false, errors will be silently ignored</param>
+        /// <param name="LookupTable">A KeyValuePair&lt;string,HtmlRendererCallback&gt;[] containing valid BBCode tags and their HTML renderers</param>
+        /// <returns>The HTML source as a string</returns>
         public static string ToHtml(this BBCodeNode Node, bool ThrowOnError, object LookupTable)
         {
             if ((Node as BBCodeTextNode) != null)

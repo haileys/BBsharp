@@ -10,6 +10,9 @@ namespace bbsharp.Renderers.Html
 {
     public static partial class HtmlRenderer
     {
+        /// <summary>
+        /// Internal method for rendering links
+        /// </summary>
         public static string RenderLink(BBCodeNode Node, bool ThrowOnError, object LookupTable)
         {
             if ((Node.Attribute ?? "").Trim() == "")
