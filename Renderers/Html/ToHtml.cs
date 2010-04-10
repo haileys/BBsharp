@@ -69,6 +69,8 @@ namespace bbsharp.Renderers.Html
             // BBCode tags which require special handling
             { "img",    RenderImage },
             { "a",      RenderLink },
+            { "color",  RenderColor },
+            { "colour", RenderColor },
         }.ToArray();
 
         /// <summary>
