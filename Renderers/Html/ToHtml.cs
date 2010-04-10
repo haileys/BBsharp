@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.Web;
-using LookupT = System.Collections.Generic.KeyValuePair<string, System.Func<bbsharp.BBCodeNode, bool, object, string>>;
+using LookupT = System.Collections.Generic.KeyValuePair<string, bbsharp.Renderers.Html.HtmlRendererCallback>;
 
 namespace bbsharp.Renderers.Html
 {
+    public delegate string HtmlRendererCallback(BBCodeNode Node, bool ThrowOnError, object LookupTable);
+
     public static partial class HtmlRenderer
     {
         /// <summary>
@@ -31,7 +33,7 @@ namespace bbsharp.Renderers.Html
 
             return html.ToString();
         }
-        static readonly LookupT[] convertLookup = new Dictionary<string, Func<BBCodeNode, bool, object, string>>
+        static readonly LookupT[] convertLookup = new Dictionary<string, HtmlRendererCallback>
         {
             // The BBCode tags which correlate 1:1 with HTML tags
             { "b",      DirectConvert },
