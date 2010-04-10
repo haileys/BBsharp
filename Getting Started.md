@@ -57,4 +57,4 @@ Simple, hey? Now all we need to do is register this custom tag with the HTML ren
     
 And we're done! Obviously, using this advanced method is a little bit more complex than using the extension method in the `bbsharp.Easy` namespace, but it gives us an idea of some of the power afforded to us by the BBsharp Library.
 
-That's it for the Getting Started guide. Feel free to poke around the source code or Intellisense documentation if you have any queries. If you encounter any bugs or issues, please open up a ticket in the (Issues section)[http://github.com/charliesome/BBsharp/issues]. Thanks for using BBsharp!
+That's it for the Getting Started guide. Feel free to poke around the source code or Intellisense documentation if you have any queries. If you encounter any bugs or issues, please open up a ticket in the [Issues section](http://github.com/charliesome/BBsharp/issues). Thanks for using BBsharp!
