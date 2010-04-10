@@ -13,7 +13,7 @@ namespace bbsharp.Easy
         /// </summary>
         /// <param name="BBCode">A string of BBCode formatted text</param>
         /// <returns>A string of HTML code</returns>
-        public static string BbToHtml(string BBCode)
+        public static string BbToHtml(this string BBCode)
         {
             return BBCodeDocument.Load(BBCode, false, new string[] { "hr" }).ToHtml(false);
         }
