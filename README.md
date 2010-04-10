@@ -14,3 +14,6 @@ It will parse BBCode into a DOM tree, where it will then be able to be exported 
 
 * **Where is the documentation?**
 > You will find that there is no `doc` folder or anything similar full of documentation files. Rest assured that there is documentation included in the form Intellisense XML comments. BBsharp is not yet complex enough to require dedicated documentation, and I feel that good Intellisense documentation is more convenient than anything else!
+
+* **How do I get started?**
+> Getting started with BBsharp is easy! Just read through our (Getting Started guide)[http://github.com/charliesome/BBsharp/blob/master/Getting Started.md]
