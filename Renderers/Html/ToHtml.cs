@@ -48,6 +48,8 @@ namespace bbsharp.Renderers.Html
             { "a",      RenderLink },
         }.ToArray();
 
+        public static LookupT[] DefaultLookupTable { get { return convertLookup; } }
+
         public static string ToHtml(this BBCodeNode Node)
         {
             return Node.ToHtml(false);
