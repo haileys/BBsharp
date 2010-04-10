@@ -21,7 +21,7 @@ namespace bbsharp.Renderers.Html
                 else
                     return Error(Node, LookupTable);
 
-            if (!Regex.IsMatch(Node.Attribute.Trim(), "^{#[a-f0-9]+|[a-z]+}$", RegexOptions.Compiled | RegexOptions.IgnoreCase))
+            if (!Regex.IsMatch(Node.Attribute.Trim(), "^#?[a-z0-9]+$", RegexOptions.Compiled | RegexOptions.IgnoreCase))
                 if (ThrowOnError)
                     throw new HtmlRenderException("Invalid color in [color] tag. Expected either color name or hexadecimal color");
                 else
