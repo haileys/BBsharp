@@ -13,7 +13,7 @@ Simple load up the `bbsharp.Easy` namespace and away you go!
     
     class Program
     {
-    public static void Main()
+    	public static void Main()
     	{
     		string BBCode = "[b]Hello there![/b] I've been converted to HTML with [i]BBsharp[i].";
     		
