@@ -53,6 +53,7 @@
     <Compile Include="BBCodeTextNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\Html\DirectlyConvertable.cs" />
+    <Compile Include="Renderers\Html\Easy.cs" />
     <Compile Include="Renderers\Html\Link.cs" />
     <Compile Include="Renderers\Html\HtmlRenderException.cs" />
     <Compile Include="Renderers\Html\Image.cs" />
