@@ -1,7 +1,7 @@
 Getting started
 ===============
 
-BBsharp was designed from the ground up to provide a simple library for converting BBCode to HTML, while also providing powerful tools to parse and mutate a DOM representation of a BBCode document.
+bbsharp was designed from the ground up to provide a simple library for converting BBCode to HTML, while also providing powerful tools to parse and mutate a DOM representation of a BBCode document.
 
 It's totally up to you whether you decide to use the more advanced features, or just stay with the simple 'BBCode In, HTML Out' subset of the API.
 
@@ -15,26 +15,26 @@ Simple load up the `bbsharp.Easy` namespace and away you go!
     {
     	public static void Main()
     	{
-    		string BBCode = "[b]Hello there![/b] I've been converted to HTML with [i]BBsharp[i].";
+    		string BBCode = "[b]Hello there![/b] I've been converted to HTML with [i]bbsharp[i].";
     		
     		Console.WriteLine("BBCode: {0}", BBCode);
     		Console.WriteLine("HTML: {0}", BBCode.BbToHtml());
     	}
     }
    
-That's it. However, using the easy way means that you have no way of setting how BBsharp works. If you wish to add some custom tags, you'll need to use the more advanced way which is detailed below.
+That's it. However, using the easy way means that you have no way of setting how bbsharp works. If you wish to add some custom tags, you'll need to use the more advanced way which is detailed below.
 
 ### Converting BBCode to HTML - more advanced
 
-BBsharp was designed to be modular, and therefore only provides the HTML output features if you request them. Let's load up the BBsharp namespace and the HTML renderer namespace (we'll also need the `System.Collections.Generic` namespace later on):
+bbsharp was designed to be modular, and therefore only provides the HTML output features if you request them. Let's load up the bbsharp namespace and the HTML renderer namespace (we'll also need the `System.Collections.Generic` namespace later on):
 	
     using bbsharp;
     using bbsharp.Renderers.Html;
     using System.Collections.Generic;
 
-Now use the `BBCodeDocument.Load()` method to parse a string of BBCode into a BBCode DOM. BBsharp is designed around a base class: `BBCodeNode`. Both the `BBCodeDocument` and `BBCodeTextNode` (a non-tag node) classes inherit from it. `BBCodeNode` was inspired by the `System.Xml.XmlNode` class from the .NET Framework and implements most of the methods that `XmlNode` does.
+Now use the `BBCodeDocument.Load()` method to parse a string of BBCode into a BBCode DOM. bbsharp is designed around a base class: `BBCodeNode`. Both the `BBCodeDocument` and `BBCodeTextNode` (a non-tag node) classes inherit from it. `BBCodeNode` was inspired by the `System.Xml.XmlNode` class from the .NET Framework and implements most of the methods that `XmlNode` does.
 
-    BBCodeDocument document = BBCodeDocument.Load("[b]Hello there![/b] I've been converted to HTML with [name]BBsharp[/name].");
+    BBCodeDocument document = BBCodeDocument.Load("[b]Hello there![/b] I've been converted to HTML with [name]bbsharp[/name].");
     
 Notice how we've used a custom tag - `[name]` - here. The BBCode parser doesn't care about specifics such as which tags exist and which don't. In fact, the only information we can give the BBCode parser about tags is which tags are singular (self closing)
 
@@ -55,6 +55,6 @@ Simple, hey? Now all we need to do is register this custom tag with the HTML ren
     
     string Html = document.Children.ToHtml(false, LookupTable);
     
-And we're done! Obviously, using this advanced method is a little bit more complex than using the extension method in the `bbsharp.Easy` namespace, but it gives us an idea of some of the power afforded to us by the BBsharp Library.
+And we're done! Obviously, using this advanced method is a little bit more complex than using the extension method in the `bbsharp.Easy` namespace, but it gives us an idea of some of the power afforded to us by the bbsharp Library.
 
-That's it for the Getting Started guide. Feel free to poke around the source code or Intellisense documentation if you have any queries. If you encounter any bugs or issues, please open up a ticket in the [Issues section](http://github.com/charliesome/BBsharp/issues). Thanks for using BBsharp!
+That's it for the Getting Started guide. Feel free to poke around the source code or Intellisense documentation if you have any queries. If you encounter any bugs or issues, please open up a ticket in the [Issues section](http://github.com/charliesome/bbsharp/issues). Thanks for using bbsharp!
