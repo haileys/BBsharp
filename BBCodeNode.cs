@@ -33,6 +33,31 @@ namespace bbsharp
         public string Attribute { get; set; }
 
         /// <summary>
+        /// Gets an array of children BBCodeNodes with the specified TagName
+        /// </summary>
+        /// <param name="TagName">The TagName of BBCodeNodes to return</param>
+        /// <returns>Array of matching BBCodeNodes</returns>
+        public BBCodeNode[] this[string TagName]
+        {
+            get
+            {
+                return children.Where(x => x.TagName == TagName).ToArray();
+            }
+        }
+        /// <summary>
+        /// Gets the nth child BBCodeNode
+        /// </summary>
+        /// <param name="Index">The index of the BBCodeNode to access</param>
+        /// <returns>BBCodeNode at the specified index</returns>
+        public BBCodeNode this[int Index]
+        {
+            get
+            {
+                return children[Index];
+            }
+        }
+
+        /// <summary>
         /// Creates a new BBCodeNode.
         /// </summary>
         /// <param name="TagName">The node's tag name. Mandatory.</param>
