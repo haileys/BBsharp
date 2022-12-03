@@ -22,4 +22,4 @@ At the moment, it would be nice to have some extra renderers. If you'd like to i
 > You will find that there is no `doc` folder or anything similar full of documentation files. Rest assured that there is documentation included in the form Intellisense XML comments. bbsharp is not yet complex enough to require dedicated documentation, and I feel that good Intellisense documentation is more convenient than anything else!
 
 * **How do I get started?**
-> Getting started with bbsharp is easy! Just read through our [Getting Started guide](http://github.com/charliesome/BBsharp/blob/master/Getting Started.md)
+> Getting started with bbsharp is easy! Just read through our [Getting Started guide](http://github.com/charliesome/BBsharp/blob/master/Getting%20Started.md)
